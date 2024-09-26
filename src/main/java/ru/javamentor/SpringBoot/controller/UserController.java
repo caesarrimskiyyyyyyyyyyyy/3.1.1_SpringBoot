@@ -1,5 +1,6 @@
 package ru.javamentor.SpringBoot.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String createUser(@ModelAttribute("user") User user) {
+    public String createUser(@ModelAttribute("user") @Valid User user) {
         userService.saveUser(user);
         return "redirect:/";
     }
@@ -49,7 +50,7 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    public String editUser(@ModelAttribute("user") User user) {
+    public String editUser(@ModelAttribute("user") @Valid User user) {
         userService.updateUser(user);
         return "redirect:/";
     }
